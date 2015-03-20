@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+		<h2>New product</h2>
+	</div>
+	<div class="row">
+		<form action="/product/create" method="post">
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">	
+			<div class="group-form">
+				<label>Category</label>
+				<select name="product[category_id]" class="form-control">
+					<% @categories.each do |category|  %>
+						<option value="<%= category.id %>"><%= category.name %></option>
+					<% end %>	
+				</select>
+			</div>
+			<div class="group-form">
+				<label>Name</label>
+				<input type="text" name="product[name]" class="form-control">
+			</div>
+			<div class="group-form">
+				<label>Description</label>
+				<input type="text" name="product[description]" class="form-control">
+			</div>
+			<div class="group-form">
+				<label>Price</label>
+				<input type="text" name="product[pricing]" class="form-control">
+			</div>
+			<br />		
+			<div class="group-form">
+				<button type="submit" class="btn btn-success">Create</button> <a href="/products" class="btn btn-primary">Back</a>
+			</div>
+			<%if flash[:errors] %>
+				<% flash[:errors].each do |error| %>
+					<h5 class="alert alert-danger"><%=error %></h5>
+				<% end %>
+			<% end %>
+
+			<% if flash[:success] %>
+				<h5 class="alert alert-success"><%=flash[:success]%></h5>
+			<% end %>
+		</form>
+	</div>	
+</div>

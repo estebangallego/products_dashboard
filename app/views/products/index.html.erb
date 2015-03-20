@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<h2>Listing products</h2>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<td><h4>Name</h4></td>
+					<td><h4>Description</h4></td>
+					<td><h4>Category</h4></td>
+					<td><h4>Price</h4></td>
+					<td><h4>Action</h4></td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @products.each do |product| %>
+				<tr>
+					<td><%= product.name %></td>
+					<td><%= product.description %></td>
+					<td><%= product.Category %></td>
+					<td><%= product.pricing %></td>
+					<td><a class="btn btn-success" href="/product/<%= product.id %>">Show</a> <a class="btn btn-primary" href="/product/<%= product.id %>/edit">Edit</a> <a class="btn btn-danger" href="/product/<%= product.id %>/destroy">Destroy</a></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="row">
+			<a href="/products/new" class="btn btn-primary">New product</a>
+		</div>
+		<div class="row">
+			<% if flash[:success] %>
+				<h5 class="alert alert-success"><%=flash[:success]%></h5>
+			<% end %>
+		</div>
+	</div>
+</div>

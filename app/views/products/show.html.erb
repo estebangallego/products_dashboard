@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<h3>Name: <%= @product.name %></h3>
+		<h3>Description: <%= @product.description %></h3>
+		<h3>Price: <%= @product.pricing %></h3>
+		<h3>Category: <%= @product.Category %></h3>
+	</div>
+	<div class="row">
+		<a class="btn btn-primary" href="/product/<%= @product.id %>/edit">Edit</a> <a class="btn btn-success" href="/products">Back</a>
+	</div>
+</div>
