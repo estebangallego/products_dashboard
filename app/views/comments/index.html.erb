@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<h3>All comments</h3>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<td><h3>Comments</h3></td>
+					<td><h3>Products</h3></td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @allComments.each do |comment| %>
+				<tr>
+					<td><%= comment.comment%></td>
+					<td><%= comment.name %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<hr>
+	<div class="row">
+		<a class="btn btn-primary" href="/products">Back</a>
+	</div>
+</div>

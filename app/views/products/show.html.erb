@@ -8,4 +8,32 @@
 	<div class="row">
 		<a class="btn btn-primary" href="/product/<%= @product.id %>/edit">Edit</a> <a class="btn btn-success" href="/products">Back</a>
 	</div>
+	<div class="row">
+		<h4>Comment</h4>
+			<div class="form-group">
+			<form action="/comment/create" method="post">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<input type="hidden" name="comment[product_id]" value="<%= @product.id %>">
+				<textarea class="form-control" name="comment[comment]"></textarea>
+				<br />
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>	
+			<%if flash[:errors] %>
+				<% flash[:errors].each do |error| %>
+					<h5 class="alert alert-danger"><%=error %></h5>
+				<% end %>
+			<% end %>
+
+			<% if flash[:success] %>
+				<h5 class="alert alert-success"><%=flash[:success]%></h5>
+			<% end %>	
+		</div>	
+	</div>
+	<br />
+	<div class="row">
+		<% @comments.reverse.each do |comment| %>
+			<p><%= comment.comment %> - <%= comment.created_at %></p>
+		<% end %>
+	</div>
 </div>
+

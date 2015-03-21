@@ -9,6 +9,18 @@ class ProductsController < ApplicationController
 	def show
 		# index 
 		@product = Product.joins("LEFT JOIN categories ON categories.id = category_id").select("products.*,categories.name AS 'Category'").find(params[:id])
+		@comments = Comment.all.where(product_id: params[:id])
+
+		# if @comments.valid?	
+		# 	flash[:success] = "The comments has been successfully added"
+		# 	redirect_to request.referer
+		# else
+		# 	flash[:errors] = @comments.errors.full_messages
+		# 	redirect_to request.referer
+		# end
+
+		# Product.all.joins("LEFT JOIN comments ON comments.id = product_id").select("products.id, products.name, comments.comment")
+		# Comment.all.where(product:38)
 	end
 	def destroy
 		Product.find(params[:id]).destroy
@@ -42,7 +54,7 @@ class ProductsController < ApplicationController
 			redirect_to '/products'
 		else
 			flash[:errors] = @product.errors.full_messages
-			render :edit
+			redirect_to request.referer
 		end
 	end
 
